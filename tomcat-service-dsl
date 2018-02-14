@@ -1,0 +1,14 @@
+job('service_tomcat') {
+ description(' service dsl job  for tomcat in minda.')
+parameters {
+   choiceParam('var1',['192.168.33.171','ip2'],)
+   choiceParam('var2',['restart','start','stop'],)
+}
+ steps {
+   shell{
+     command('''\
+#!/bin/bash
+  ssh ubuntu@\\$var1 sudo service tomcat $var2
+'''.stripIndent())}
+}
+}
